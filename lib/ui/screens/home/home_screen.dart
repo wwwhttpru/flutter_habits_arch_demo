@@ -68,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemBuilder: (context, index) {
                   final habit = habits[index];
                   return HabitTile(
-                    key: ValueKey(habit.id),
+                    key: ValueKey('HabitTile${habit.id}'),
                     habit: habit,
                     onTapHabit: () async {
                       Navigator.push(
