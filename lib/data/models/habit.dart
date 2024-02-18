@@ -4,7 +4,7 @@ part 'habit.freezed.dart';
 
 @freezed
 class Habit with _$Habit {
-  factory Habit({
+  const factory Habit({
     required String id,
     required String title,
     @Default({}) Set<DateTime> completedDates,

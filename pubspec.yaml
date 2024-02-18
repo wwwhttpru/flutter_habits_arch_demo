@@ -18,10 +18,13 @@ dependencies:
   injectable: ^2.3.2
   get_it: ^7.6.7
   provider: ^6.1.1
+  meta: ^1.11.0
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  mocktail: ^1.0.3
 
   flutter_lints: ^2.0.0
   build_runner: ^2.4.8

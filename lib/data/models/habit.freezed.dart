@@ -111,7 +111,7 @@ class __$$HabitImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$HabitImpl implements _Habit {
-  _$HabitImpl(
+  const _$HabitImpl(
       {required this.id,
       required this.title,
       final Set<DateTime> completedDates = const {}})
@@ -158,7 +158,7 @@ class _$HabitImpl implements _Habit {
 }
 
 abstract class _Habit implements Habit {
-  factory _Habit(
+  const factory _Habit(
       {required final String id,
       required final String title,
       final Set<DateTime> completedDates}) = _$HabitImpl;
