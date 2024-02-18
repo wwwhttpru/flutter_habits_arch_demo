@@ -8,10 +8,19 @@ class HabitsStateHolder extends ChangeNotifier {
   final HabitDao _dao;
   final Uuid _uuid;
 
-  Map<String, Habit> _habits = {};
-  HabitsLoadingStatus _habitsLoadingStatus = HabitsLoadingStatus.loading;
+  Map<String, Habit> _habits;
+  HabitsLoadingStatus _habitsLoadingStatus;
 
-  HabitsStateHolder(this._dao, this._uuid);
+  HabitsStateHolder(this._dao, this._uuid)
+      : _habits = {},
+        _habitsLoadingStatus = HabitsLoadingStatus.loading;
+
+  HabitsStateHolder.data(
+    this._dao,
+    this._uuid, {
+    required Map<String, Habit> habits,
+  })  : _habits = habits,
+        _habitsLoadingStatus = HabitsLoadingStatus.data;
 
   List<Habit> get habits => _habits.values.toList();
   HabitsLoadingStatus get habitsLoadingStatus => _habitsLoadingStatus;
