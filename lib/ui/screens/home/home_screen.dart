@@ -11,6 +11,9 @@ import 'widgets/habit_tile.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  static const Key addHabitButtonKey = ValueKey('AddHabitButtonKey');
+  static const Key createHabitScreenKey = ValueKey('CreateHabitScreenKey');
+
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -22,7 +25,14 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _habitsStateHolder = context.read<HabitsStateHolder>();
-    _habitsStateHolder.fetchHabits();
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      if (!mounted) {
+        return;
+      }
+
+      _habitsStateHolder.fetchHabits();
+    });
   }
 
   @override
@@ -30,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text('Habit'),
+        title: const Text('Habit'),
       ),
       body: ListenableBuilder(
         listenable: _habitsStateHolder,
@@ -58,6 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemBuilder: (context, index) {
                   final habit = habits[index];
                   return HabitTile(
+                    key: ValueKey(habit.id),
                     habit: habit,
                     onTapHabit: () async {
                       Navigator.push(
@@ -83,11 +94,14 @@ class _HomeScreenState extends State<HomeScreen> {
         },
       ),
       floatingActionButton: FloatingActionButton(
+        key: HomeScreen.addHabitButtonKey,
         onPressed: () async {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const HabitCreateScreen(),
+              builder: (context) => const HabitCreateScreen(
+                key: HomeScreen.createHabitScreenKey,
+              ),
             ),
           );
         },

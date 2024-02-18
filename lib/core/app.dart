@@ -5,7 +5,12 @@ import '../ui/screens/home/home_screen.dart';
 import 'di/di.dart';
 
 class HabitsApp extends StatelessWidget {
-  const HabitsApp({super.key});
+  final DependencyContainer container;
+
+  const HabitsApp({
+    required this.container,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

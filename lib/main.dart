@@ -4,5 +4,5 @@ import 'package:habits_arch_demo/core/di/di.dart';
 
 void main() {
   configureDependencies();
-  runApp(const HabitsApp());
+  runApp(HabitsApp(container: diContainer));
 }
